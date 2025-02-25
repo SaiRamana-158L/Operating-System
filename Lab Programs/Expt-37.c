@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, head, seek_time = 0;
+
+    // Get the number of disk requests
+    printf("Enter the number of disk requests: ");
+    scanf("%d", &n);
+
+    int request_queue[n];
+
+    // Get the disk request queue
+    printf("Enter the disk request queue:\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &request_queue[i]);
+    }
+
+    // Get the initial position of the disk head
+    printf("Enter the initial position of the disk head: ");
+    scanf("%d", &head);
+
+    // FCFS Scheduling
+    printf("\nFCFS Disk Scheduling:\n");
+    printf("Head Movement Sequence: %d", head);
+
+    for (int i = 0; i < n; i++) {
+        seek_time += abs(head - request_queue[i]);
+        head = request_queue[i];
+        printf(" -> %d", head);
+    }
+
+    // Print total and average seek time
+    printf("\nTotal Seek Time: %d\n", seek_time);
+    printf("Average Seek Time: %.2f\n", (float)seek_time / n);
+
+    return 0;
+}
